@@ -15,8 +15,7 @@ fetcher.onclick = () => {
             return data;
         })
         .then((data) => {
-            let dtatSorted = data.reverse();
-            if (dtatSorted.message || dtatSorted.length == 0) {
+            if (data.message || data.length == 0) {
                 popUp.classList.add("active");
                 msg.innerHTML = "Username is not correct please try again";
                 repoLink.classList.remove("hasData");
@@ -24,36 +23,36 @@ fetcher.onclick = () => {
                 repoLink.classList.add("hasData");
                 dtatArea.innerHTML = "";
 
-                for (let i = 0; i < dtatSorted.length; i++) {
-                    let lastUpdate = dtatSorted[i].updated_at.slice(0, 10);
+                for (let i = 0; i < data.length; i++) {
+                    let lastUpdate = data[i].updated_at.slice(0, 10);
                     let reposCount = document.querySelector(".repos-count .count");
                     let reposAuthor = document.querySelector(".repos-count .author");
                     let userImage = document.getElementById("userImage");
                     let classNameBox = "box";
 
-                    reposAuthor.innerHTML = dtatSorted[i].owner.login;
-                    reposCount.innerHTML = dtatSorted.length + " Repositories";
-                    userImage.src = dtatSorted[i].owner.avatar_url;
-                    if (dtatSorted[i].name == "github-repos") {
+                    reposAuthor.innerHTML = data[i].owner.login;
+                    reposCount.innerHTML = data.length + " Repositories";
+                    userImage.src = data[i].owner.avatar_url;
+                    if (data[i].name == "github-repos") {
                         classNameBox = "box this";
                     }
 
                     dtatArea.innerHTML += `
                     <div class="${classNameBox}">
                     <p class="repo-info">Repo. Name: <span>${
-                      dtatSorted[i].name
+                      data[i].name
                     }</span></p>
                     <p class="repo-info">Repo. Link: <a href="${
-                      dtatSorted[i].html_url
+                      data[i].html_url
                     }" target="_blank">open repo Code</a></p>
                     <p class="repo-info">
                         Stars:
-                        <span>${dtatSorted[i].stargazers_count}</span>
+                        <span>${data[i].stargazers_count}</span>
                     </p>
                     <p class="repo-info">highlighted language: <span>${
-                      dtatSorted[i].language == null
+                      data[i].language == null
                         ? "not-available"
-                        : dtatSorted[i].language
+                        : data[i].language
                     }</span></p>
                     <p class="repo-info">Last Update: <span>${lastUpdate}</span></p>
                 </div>
