@@ -240,6 +240,12 @@
     text-decoration: none;
 }
 
+.data .box.this .repo-info span,
+.data .box.this .repo-info a,
+.repos-count span {
+    color: green;
+}
+
 .repos-count {
     margin: 20px auto;
     text-align: center;
